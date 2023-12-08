@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html
+﻿<?php
+    include_once "./api/db.php";
+?>
+
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0068)?do=admin&redo=title -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -70,8 +74,7 @@
 
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :
-                        1 </span>
+                    <span class="t">進站總人數 : <?=$Total->search(['id'=>1])['total'];?> </span>
                 </div>
             </div>
 

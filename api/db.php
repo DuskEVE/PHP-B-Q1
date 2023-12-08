@@ -86,48 +86,4 @@ class myDB{
     }
 }
 
-    $myDB = new myDB('localhost', 'utf8', 'school', 'root', '', 'students');
-    
-    printArray($myDB->search(['id'=>1]));
-    echo printTable( $myDB->searchAll(['dept'=>'2', 'graduate_at'=>'2']) );
-    
-    $myDB->changeTable('dept');
-    echo printTable( $myDB->searchAll() );
-    echo $myDB->update(['id'=>20, 'code'=>115, 'name'=>'電子系']);
-    echo printTable( $myDB->searchAll() );
-    
-    $myDB->changeDatabase('localhost', 'utf8', 'member');
-    $myDB->changeTable('user');
-    echo printTable( $myDB->searchAll() );
-    
-    echo "<br>";
-    $myDB->changeDatabase('localhost', 'utf8', 'school');
-    $myDB->changeTable('dept');
-    // echo $myDB->update(['code'=>113, 'name'=>'織品系']);
-    // echo $myDB->delete(['id'=>22]);
-    
-
-    function printArray($arr){
-        echo "<pre>";
-        print_r($arr);
-        echo "</pre>";
-    }
-
-    function printTable($arr){
-        $keys = array_keys($arr[0]);
-        $result = [];
-
-        array_push($result, '<tr><td>'.join('</td><td>', $keys).'</td></tr>');
-
-        for($i=0; $i<count($arr); $i++){
-            array_push($result, '<tr>');
-
-            foreach($arr[$i] as $key=>$value){
-                array_push($result, '<td>'.$value.'</td>');
-            }
-
-            array_push($result, '</tr>');
-        }
-
-        return '<table>'.join($result).'</table>';
-    }
+$Total = new myDB('localhost', 'utf8', 'db15', 'root', '', 'total');
