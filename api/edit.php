@@ -9,8 +9,8 @@
         else{
             $data = $DB->search(['id'=>$id]);
             $data['text'] = $text;
-            $data['display'] = (isset($_POST['display']) && $_POST['display'] == $id)? 1:0;
-            // print_r($data);
+            if($table == 'title') $data['display'] = (isset($_POST['display']) && $_POST['display'] == $id)? 1:0;
+            else if($table == 'ad') $data['display'] = (isset($_POST['display']) && in_array($id, $_POST['display']))? 1:0;
             $DB->update($data);
         }
     }
