@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">網站頁尾管理</p>
-    <form method="post" action="./api/edit.php?do=bottom">
+    <form method="post" action="./api/edit_info.php?do=bottom">
     <!-- <form method="post" target="back" action="./api/edit_bottom.php"> -->
 
         <table style="width:50%; margin:auto;">

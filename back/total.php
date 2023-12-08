@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">網站瀏覽人數管理</p>
-    <form method="post" action="./api/edit.php?do=total">
+    <form method="post" action="./api/edit_info.php?do=total">
     <!-- <form method="post" target="back" action="./api/edit_total.php"> -->
 
         <table style="width:50%; margin:auto;">

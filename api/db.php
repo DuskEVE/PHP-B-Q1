@@ -86,5 +86,6 @@ class myDB{
     }
 }
 
+$Title = new myDB('localhost', 'utf8', 'db15', 'root', '', 'title');
 $Total = new myDB('localhost', 'utf8', 'db15', 'root', '', 'total');
 $Bottom = new myDB('localhost', 'utf8', 'db15', 'root', '', 'bottom');

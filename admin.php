@@ -25,8 +25,8 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <a title="" href="?">
-            <div class="ti" style="background:url('use/'); background-size:cover;"></div>
+        <a title="<?=$Title->search(['display'=>1])['text']?>" href="./index.php">
+            <div class="ti" style="background-image:url('./img/<?=$Title->search(['display'=>1])['img']?>'); background-size:cover;"></div>
             <!--標題-->
         </a>
         <div id="ms">

@@ -1,23 +1,19 @@
 <?php
     include_once "./db.php";
+    $table = $_POST['table'];
+    $DB = ${ucfirst($table)};
+    unset($_POST['table']);
 
-    $table = ${ucfirst($_GET['do'])};
-    $data = $table->search(['id'=>1]);
-    $data[$_GET['do']] = $_POST[$_GET['do']];
-    $table->update($data);
+    foreach($_POST['text'] as $id=>$text){
+        if(isset($_POST['del']) && in_array($id, $_POST['del'])) $DB->delete(['id'=>$id]);
+        else{
+            $data = $DB->search(['id'=>$id]);
+            $data['text'] = $text;
+            $data['display'] = (isset($_POST['display']) && $_POST['display'] == $id)? 1:0;
+            // print_r($data);
+            $DB->update($data);
+        }
+    }
 
-    // if(isset($_GET['do']) && $_GET['do'] == 'total'){
-    //     $_POST['total'];
-    //     $total = $Total->search(['id'=>1]);
-    //     $total['total'] = $_POST['total'];
-    //     $Total->update($total);
-    // }
-    // else if(isset($_GET['do']) && $_GET['do'] == 'bottom'){
-    //     $_POST['bottom'];
-    //     $bottom = $Bottom->search(['id'=>1]);
-    //     $bottom['bottom'] = $_POST['bottom'];
-    //     $Bottom->update($bottom);
-    // }
-    
-    header("location:../admin.php?do={$_GET['do']}");
+    header("location:../admin.php?do=$table");
 ?>
