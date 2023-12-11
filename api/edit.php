@@ -3,6 +3,7 @@
     $table = $_POST['table'];
     $DB = ${ucfirst($table)};
     unset($_POST['table']);
+    echo $table;
 
     foreach($_POST['text'] as $id=>$text){
         if(isset($_POST['del']) && in_array($id, $_POST['del'])) $DB->delete(['id'=>$id]);
