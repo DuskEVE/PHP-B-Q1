@@ -54,12 +54,22 @@ class myDB{
         return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function searchAll($target = []){
+    function searchAll($target = [], $opt=""){
         $pdo = $this->dbLogin();
         $sql = "select * from `{$this->table}`";
         if(count($target) > 0) $sql = $sql." where ".$this->sqlSet($target, '&&');
+        if(strlen($opt) > 0) $sql = $sql." ".$opt;
 
         return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function count($target = []){
+        $pdo = $this->dbLogin();
+        $sql = "select count(*) from `{$this->table}`";
+        if(count($target) > 0) $sql = $sql." where ".$this->sqlSet($target, '&&');
+
+        $count = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $count['count(*)'];
     }
 
     function update($target){
@@ -90,3 +100,6 @@ $Title = new myDB('localhost', 'utf8', 'db15', 'root', '', 'title');
 $Total = new myDB('localhost', 'utf8', 'db15', 'root', '', 'total');
 $Bottom = new myDB('localhost', 'utf8', 'db15', 'root', '', 'bottom');
 $Ad = new myDB('localhost', 'utf8', 'db15', 'root', '', 'ad');
+$Mvim = new myDB('localhost', 'utf8', 'db15', 'root', '', 'mvim');
+$Image = new myDB('localhost', 'utf8', 'db15', 'root', '', 'image');
+$News = new myDB('localhost', 'utf8', 'db15', 'root', '', 'news');
