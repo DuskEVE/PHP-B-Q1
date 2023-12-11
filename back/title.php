@@ -19,6 +19,7 @@
                 <tr>
                     <td width="45%">
                         <img src="./img/<?=$data['img']?>" alt="" style="width: 300px; height: 30px;">
+                        <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td width="23%">
                         <input type="text" name="text[<?=$data['id']?>]" id="text" value="<?=$data['text']?>">

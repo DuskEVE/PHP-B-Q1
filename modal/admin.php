@@ -7,7 +7,7 @@
         <tr>
             <label for="">帳號:</label>
             <input type="hidden" name="table" value="<?=$_GET['table']?>">
-            <input type="text" name="password" id="password">
+            <input type="text" name="user" id="user">
         </tr>
         <tr>
             <label for="">密碼:</label>

@@ -16,7 +16,7 @@
                 <tr>
                     <td >
                         <input type="text" name="user[<?=$data['id']?>]" id="user" value="<?=$data['user']?>" style="width:80%">
-                        <input type="hidden" name="id" value="<?=$data['id']?>">
+                        <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td >
                         <input type="password" name="password[]" value="<?=$data['password']?>" style="width:80%">

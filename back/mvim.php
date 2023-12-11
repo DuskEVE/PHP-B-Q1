@@ -17,7 +17,7 @@
                 <tr>
                     <td style="display: flex; justify-content: center;">
                         <img src="./img/<?=$data['img']?>" alt="" style="width: 150px; height: 100px;">
-                        <input type="hidden" name="text[<?=$data['id']?>]" value="null">
+                        <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td >
                         <input type="checkbox" name="display[]" value="<?=$data['id']?>" <?=($data['display']==1? 'checked':'')?>>

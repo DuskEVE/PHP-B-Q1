@@ -23,6 +23,7 @@
                 <tr>
                     <td style="display: flex; justify-content: center;">
                         <textarea name="text[<?=$data['id']?>]" id="text" style="width: 80%; height: 60px;"><?=$data['text']?></textarea>
+                        <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td >
                         <input type="checkbox" name="display[]" value="<?=$data['id']?>" <?=($data['display']==1? 'checked':'')?>>

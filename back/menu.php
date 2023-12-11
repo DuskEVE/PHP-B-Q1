@@ -19,7 +19,7 @@
                 <tr>
                     <td >
                         <input type="text" name="text[<?=$data['id']?>]" id="text" value="<?=$data['text']?>" style="width:90%">
-                        <input type="hidden" name="id" value="<?=$data['id']?>">
+                        <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td >
                         <input type="text" name="href[]" value="<?=$data['href']?>" style="width:90%">
@@ -30,6 +30,11 @@
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" value="<?=$data['id']?>">
+                    </td>
+                    <td>
+                        <input type="button" 
+                            onclick="op('#cover','#cvr','./modal/submenu.php?table=<?=$_GET['do']?>&id=<?=$data['id']?>')"
+                            value="更新圖片">
                     </td>
                 </tr>
                 <?php
