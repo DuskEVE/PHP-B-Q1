@@ -63,6 +63,12 @@ class myDB{
         return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // function columNames(){
+    //     $pdo = $this->dbLogin();
+    //     $sql = "";
+    //     return $pdo->query($sql);
+    // }
+
     function count($target = []){
         $pdo = $this->dbLogin();
         $sql = "select count(*) from `{$this->table}`";
@@ -103,3 +109,5 @@ $Ad = new myDB('localhost', 'utf8', 'db15', 'root', '', 'ad');
 $Mvim = new myDB('localhost', 'utf8', 'db15', 'root', '', 'mvim');
 $Image = new myDB('localhost', 'utf8', 'db15', 'root', '', 'image');
 $News = new myDB('localhost', 'utf8', 'db15', 'root', '', 'news');
+$Admin = new myDB('localhost', 'utf8', 'db15', 'root', '', 'admin');
+$Menu = new myDB('localhost', 'utf8', 'db15', 'root', '', 'menu');
