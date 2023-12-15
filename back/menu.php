@@ -2,7 +2,7 @@
     <p class="t cent botli">選單管理</p>
     <form method="post" action="./api/edit.php">
         <input type="hidden" name="table" id="table" value="<?=$_GET['do']?>">
-        <table width="100%">
+        <table class="cent" width="100%">
             <tbody>
                 <tr class="yel">
                     <td width="30%">主選單名稱</td>
@@ -13,7 +13,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $datas = $Menu->searchAll();
+                $datas = $Menu->searchAll(["menu_id"=>0]);
                 foreach($datas as $data){
                 ?>
                 <tr>
@@ -24,7 +24,9 @@
                     <td >
                         <input type="text" name="href[]" value="<?=$data['href']?>" style="width:90%">
                     </td>
-                    <td></td>
+                    <td>
+                        <?=$Menu->count(['menu_id'=>$data['id']])?>
+                    </td>
                     <td>
                         <input type="checkbox" name="display[]" value="<?=$data['id']?>" <?=($data['display']==1? 'checked':'')?>>
                     </td>
@@ -34,7 +36,7 @@
                     <td>
                         <input type="button" 
                             onclick="op('#cover','#cvr','./modal/submenu.php?table=<?=$_GET['do']?>&id=<?=$data['id']?>')"
-                            value="更新圖片">
+                            value="編輯次選單">
                     </td>
                 </tr>
                 <?php
