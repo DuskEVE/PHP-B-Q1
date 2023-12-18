@@ -47,10 +47,14 @@
     <div
     style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
         <span class="t botli">最新消息區
+        <?php
+        $count = $News->count(['display'=>1]);
+        if($count > 5) echo "<a href='?do=news'>More...</a>";
+        ?>
         </span>
         <ul class="ssaa" style="list-style-type:decimal;">
         <?php
-            $news = $News->searchAll(['display'=>1]);
+            $news = $News->searchAll(['display'=>1], "limit 0,5");
             $arr = [];
             foreach($news as $element){
                 $str = mb_substr($element['text'], 0, 20);

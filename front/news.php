@@ -18,7 +18,7 @@
 
         echo "<ol class='ssaa' start='$start'>";
 
-        $datas = $News->searchAll([], "limit {$start},5");
+        $datas = $News->searchAll(['display'=>1], "limit {$start},5");
         foreach($datas as $data){
             $str = mb_substr($data['text'], 0, 20);
         ?>

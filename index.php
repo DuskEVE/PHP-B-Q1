@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once "./api/db.php";
 ?>
 
@@ -35,6 +36,38 @@
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
+                    <!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
+                        <div class="mainmu">
+                            網站標題管理 </div>
+                    </a> -->
+                    <?php
+                    $menus = $Menu->searchAll(['menu_id'=>0, 'display'=>1]);
+                    foreach($menus as $menu){
+                        ?>
+                    
+                    <a style="color:#000; font-size:13px; text-decoration:none;" href=<?=$menu['href']?>>
+                        <div class="mainmu"><?=$menu['text']?>
+                            <div class="mw">
+                            <?php
+                            if($Menu->count(['menu_id'=>$menu['id']]) > 0){
+                                $subMenus = $Menu->searchAll(['menu_id'=>$menu['id']]);
+                                foreach($subMenus as $subMenu){
+                            ?>
+
+                            <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$subMenu['href']?>">
+                                <div class="mainmu2"><?=$subMenu['text']?></div>
+                            </a>
+
+                            <?php
+                                }
+                            }
+                            ?>
+                            </div>
+                        </div>
+                    </a>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :<?=$Total->search(['id'=>1])['total'];?> </span>
@@ -46,7 +79,7 @@
 			// if(isset($_GET['do']) && $_GET['do'] == 'login') include "./front/login.php";
 			// else if(isset($_GET['do']) && $_GET['do'] == 'news') include "./front/news.php";
 			// else include "./front/main.php";
-			$fronts = ['login', 'news'];
+			$fronts = ['login_error', 'login', 'news'];
 
 			if(isset($_GET['do']) && in_array($_GET['do'], $fronts)) include "./front/{$_GET['do']}.php";
 			else include "./front/main.php";
@@ -73,13 +106,38 @@
             </script> -->
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
+                <?php
+                if(isset($_SESSION['user'])){
+                ?>
+                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
+                    onclick="lo('./admin.php?do=title')">返回管理</button>
+                <?php
+                }else{
+                ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
                     onclick="lo('?do=login')">管理登入</button>
+                <?php
+                }
+                ?>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
+                    <div class="cent"><img src="./icon/up.jpg" alt="" onclick="pp(1)"></div>
+                    <?php
+                    $imgs = $Image->searchAll(['display'=>1]);
+                    foreach($imgs as $index=>$img){
+                    ?>
+
+                    <div id="ssaa<?=$index;?>" class="im cent">
+                        <img src="./img/<?=$img['img'];?>" alt="" style="width: 150px; height: 103px; 
+                            border:3px solid orange; margin: 3px;">
+                    </div>
+
+                    <?php
+                    }
+                    ?>
                     <script>
                     var nowpage = 0,
-                        num = 0;
+                        num = <?=$Image->count(['display'=>1]);?>;
 
                     function pp(x) {
                         var s, t;
@@ -97,6 +155,7 @@
                     }
                     pp(1)
                     </script>
+                    <div class="cent"><img src="./icon/dn.jpg" alt="" onclick="pp(2)"></div>
                 </div>
             </div>
         </div>

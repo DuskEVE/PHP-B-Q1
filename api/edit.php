@@ -9,6 +9,7 @@
         else{
             $data = $DB->search(['id'=>$id]);
             if(isset($_POST['text'])) $data['text'] = $_POST['text'][$id];
+            if(isset($_POST['href'])) $data['href'] = $_POST['href'][$id];
             if($table == 'admin') $data['user'] = $_POST['user'][$id];
             if($table == 'title') $data['display'] = (isset($_POST['display']) && $_POST['display'] == $id)? 1:0;
             else if($table != 'title' && $table != 'admin'){

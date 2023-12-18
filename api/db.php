@@ -100,6 +100,11 @@ class myDB{
 
         return $pdo->exec($sql);
     }
+
+    function sql($sql){
+        $pdo = $this->dbLogin();
+        return $pdo->exec($sql);
+    }
 }
 
 $Title = new myDB('localhost', 'utf8', 'db15', 'root', '', 'title');
@@ -111,3 +116,8 @@ $Image = new myDB('localhost', 'utf8', 'db15', 'root', '', 'image');
 $News = new myDB('localhost', 'utf8', 'db15', 'root', '', 'news');
 $Admin = new myDB('localhost', 'utf8', 'db15', 'root', '', 'admin');
 $Menu = new myDB('localhost', 'utf8', 'db15', 'root', '', 'menu');
+
+if(!isset($_SESSION['visited'])){
+    $Total->sql("update `total` set `total`=`total`+1 where `id`=1");
+    $_SESSION['visited'] = 1;
+}

@@ -1,5 +1,8 @@
 ﻿<?php
+    session_start();
     include_once "./api/db.php";
+    if(!isset($_SESSION['user'])) header("location:./index.php");
+    if(!isset($_GET['do'])) header("location:./admin.php?do=title");
 ?>
 
 <!DOCTYPE html
@@ -87,8 +90,14 @@
                             <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;"
                                 class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a>
                             </td>
-                            <td><button onclick="document.cookie='user=';location.replace('?')"
-                                    style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+                            <!-- <td><button onclick="document.cookie='user=';location.replace('?')"
+                                    style="width:99%; margin-right:2px; height:50px;">管理登出</button></td> -->
+                            <td>
+                                <a href="./api/logout.php">
+                                    <button style="width:99%; margin-right:2px; height:50px;">管理登出</button>
+                                </a>
+                            </td>
+                            
                         </tr>
                     </tbody>
                 </table>

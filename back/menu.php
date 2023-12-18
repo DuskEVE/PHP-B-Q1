@@ -22,7 +22,7 @@
                         <input type="hidden" name="id[]" value="<?=$data['id']?>">
                     </td>
                     <td >
-                        <input type="text" name="href[]" value="<?=$data['href']?>" style="width:90%">
+                        <input type="text" name="href[<?=$data['id']?>]" value="<?=$data['href']?>" style="width:90%">
                     </td>
                     <td>
                         <?=$Menu->count(['menu_id'=>$data['id']])?>
