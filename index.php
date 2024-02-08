@@ -1,3 +1,7 @@
+<?php
+	include_once "./api/db.php";
+?>
+
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
@@ -36,6 +40,14 @@
 				</div>
 			</div>
 			<div class="di" style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+			
+			<?php
+			$do = "main";
+			if(isset($_GET['do'])) $do = $_GET['do'];
+			$file = "./front/$do.php";
+			if(file_exists($file)) include $file;
+			else include "./front/main.php";
+			?>
 
 			</div>
 			<div id="alt"

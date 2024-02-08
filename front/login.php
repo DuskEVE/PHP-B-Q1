@@ -2,9 +2,29 @@
 </marquee>
 <div style="height:32px; display:block;"></div>
 <!--正中央-->
-<form method="post" action="?do=check" target="back">
+<div>
     <p class="t botli">管理員登入區</p>
-    <p class="cent">帳號 ： <input name="acc" autofocus="" type="text"></p>
-    <p class="cent">密碼 ： <input name="ps" type="password"></p>
-    <p class="cent"><input value="送出" type="submit"><input type="reset" value="清除"></p>
-</form>
+    <p class="cent">帳號 ： <input id="user" name="user" type="text"></p>
+    <p class="cent">密碼 ： <input id="password" name="password" type="password"></p>
+    <p class="cent">
+        <button class="login-submit">送出</button>
+        <button class="login-reset">清除</button>
+    </p>
+</div>
+
+<script>
+    $('.login-submit').on('click', () => {
+        let user = $('#user').val();
+        let password = $('#password').val();
+
+        if(user.length === 0 || password.length === 0) alert('請輸入帳號密碼');
+        else{
+            $.post('./api/login.php', {user, password}, (response) => {
+                console.log(response);
+                if(response === '1') location.href = './admin.php';
+                else alert('帳號或密碼錯誤');
+            });
+        }
+    })
+
+</script>

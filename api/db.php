@@ -1,4 +1,5 @@
 <?php
+session_start();
 class myDB{
     private $host = 'localhost';
     private $charset = 'utf8';
@@ -11,7 +12,7 @@ class myDB{
         $this->table = $table;
     }
     function dbLogIn(){
-        $dns = "host={$this->host};charset={$this->charset};dbname={$this->dbname}";
+        $dns = "mysql:host=$this->host;charset=$this->charset;dbname=$this->dbname";
         return new PDO($dns, $this->user, $this->password);
     }
     function getTargetSet($target, $sep){
@@ -25,7 +26,7 @@ class myDB{
     }
     function search($target){
         $pdo = $this->dbLogIn();
-        $targetSet = $this->getTargetSet($target, '&');
+        $targetSet = $this->getTargetSet($target, '&&');
         $sql = "select * from `$this->table` where $targetSet";
         
         return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
@@ -35,7 +36,7 @@ class myDB{
         $sql = "select * from `$this->table`";
         $targetSet = "";
         if(count($target) > 0){
-            $targetSet = $this->getTargetSet($target, '&');
+            $targetSet = $this->getTargetSet($target, '&&');
             $sql = "$sql where $targetSet";
         }
         if(strlen($option) > 0) $sql = "$sql $option";
@@ -61,14 +62,14 @@ class myDB{
     }
     function delete($target){
         $pdo = $this->dbLogIn();
-        $targetSet = $this->getTargetSet($target, "&");
+        $targetSet = $this->getTargetSet($target, "&&");
         $sql = "delete from `$this->table` where $targetSet";
 
         return $pdo->exec($sql);
     }
     function count($target){
         $pdo = $this->dbLogIn();
-        $targetSet = $this->getTargetSet($target, "&");
+        $targetSet = $this->getTargetSet($target, "&&");
         $sql = "select count(*) from `$this->table` where $targetSet";
 
         return $pdo->query($sql)->fetch()[0];
@@ -78,5 +79,7 @@ class myDB{
         return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
+$Admin = new myDB('admin');
 
 ?>
