@@ -1,4 +1,10 @@
 <marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
+    <?php
+    $ads = $Ad->searchAll(['display'=>1]);
+    foreach($ads as $ad){
+        echo "{$ad['text']}&nbsp&nbsp";
+    }
+    ?>
 </marquee>
 <div style="height:32px; display:block;"></div>
 <!--正中央-->

@@ -85,5 +85,6 @@ class myDB{
 
 $Admin = new myDB('admin');
 $Title = new myDB('title');
+$Ad = new myDB('ad');
 
 ?>
