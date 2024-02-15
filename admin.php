@@ -43,7 +43,7 @@ include_once "./api/db.php";
 						<div class="mainmu">
 							動態文字廣告管理 </div>
 					</a>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do==mvim">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
 						<div class="mainmu">
 							動畫圖片管理 </div>
 					</a>
