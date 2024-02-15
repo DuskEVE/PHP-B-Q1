@@ -87,5 +87,6 @@ $Admin = new myDB('admin');
 $Title = new myDB('title');
 $Ad = new myDB('ad');
 $Mvim = new myDB('mvim');
+$Image = new myDB('image');
 
 ?>
