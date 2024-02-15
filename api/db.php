@@ -3,7 +3,7 @@ session_start();
 class myDB{
     private $host = 'localhost';
     private $charset = 'utf8';
-    private $dbname = 'web15_1';
+    private $dbname = 'db15';
     private $user = 'root';
     private $password = '';
     private $table;
@@ -67,10 +67,13 @@ class myDB{
 
         return $pdo->exec($sql);
     }
-    function count($target){
+    function count($target = []){
         $pdo = $this->dbLogIn();
-        $targetSet = $this->getTargetSet($target, "&&");
-        $sql = "select count(*) from `$this->table` where $targetSet";
+        $sql = "select count(*) from `$this->table`";
+        if(count($target) > 0){
+            $targetSet = $this->getTargetSet($target, "&&");
+            $sql = "$sql where $targetSet";
+        }
 
         return $pdo->query($sql)->fetch()[0];
     }
@@ -81,5 +84,6 @@ class myDB{
 }
 
 $Admin = new myDB('admin');
+$Title = new myDB('title');
 
 ?>
