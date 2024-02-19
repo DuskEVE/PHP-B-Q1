@@ -89,5 +89,6 @@ $Ad = new myDB('ad');
 $Mvim = new myDB('mvim');
 $Image = new myDB('image');
 $Total = new myDB('total');
+$Bottom = new myDB('bottom');
 
 ?>
