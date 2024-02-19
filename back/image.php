@@ -11,7 +11,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $pageCount = ceil($Image->count() / 3);
+                $pageCount = ($Image->count()==0?1:ceil($Image->count() / 3));
                 $currentPage = (isset($_GET['p'])?$_GET['p']:1);
                 $start = ($currentPage - 1) * 3;
                 $end = ($currentPage==$pageCount?$Image->count():$start+3);

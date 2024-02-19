@@ -90,5 +90,6 @@ $Mvim = new myDB('mvim');
 $Image = new myDB('image');
 $Total = new myDB('total');
 $Bottom = new myDB('bottom');
+$News = new myDB('news');
 
 ?>
