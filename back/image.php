@@ -11,8 +11,13 @@
                     <td></td>
                 </tr>
                 <?php
+                $pageCount = ceil($Image->count() / 3);
+                $currentPage = (isset($_GET['p'])?$_GET['p']:1);
+                $start = ($currentPage - 1) * 3;
+                $end = ($currentPage==$pageCount?$Image->count():$start+3);
                 $images = $Image->searchAll();
-                foreach($images as $image){
+                for($i=$start; $i<$end; $i++){
+                    $image = $images[$i];
                 ?>
                 <input type="hidden" name="id[]" value="<?=$image['id']?>">
                 <tr>
@@ -26,6 +31,26 @@
                 ?>
             </tbody>
         </table>
+
+        <div class="ct">
+            <?php
+            if($currentPage>1){
+                $prev = $currentPage-1;
+                echo "<a href='?do=image&p=$prev' style='margin:10px; text-decoration:none;'><</a>";
+            }
+            for($i=1; $i<=$pageCount; $i++){
+                $fontSize = "16px";
+                if($i == $currentPage) $fontSize = "20px";
+
+                echo "<a href='?do=image&p={$i}' style='margin:10px; text-decoration:none; font-size:$fontSize'>$i</a>";
+            }
+            if($currentPage<$pageCount){
+                $next = $currentPage+1;
+                echo "<a href='?do=image&p=$next' style='margin:10px; text-decoration:none;'>></a>";
+            }
+            ?>
+        </div>
+
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

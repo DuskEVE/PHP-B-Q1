@@ -66,6 +66,7 @@
 					}
 				)
 			</script>
+
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<?php
@@ -78,19 +79,57 @@
 					onclick="lo('?do=login')">管理登入</button> -->
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
+					<div class="ct"><img class="perv-img-btn" src="./icon/01E01.jpg"></div>
+					<?php
+					$images = $Image->searchAll(['display'=>1]);
+					foreach($images as $index=>$image){
+						echo "<div class='ct images image-{$index}'><img src='./img/{$image['img']}' style='width:150px; border:2px solid orange;'></div>";
+					}
+					?>
+					<div class="ct"><img class="next-img-btn" src="./icon/01E02.jpg"></div>
 					<script>
-						var nowpage = 0, num = 0;
-						function pp(x) {
-							var s, t;
-							if (x == 1 && nowpage - 1 >= 0) { nowpage--; }
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) { nowpage++; }
-							$(".im").hide()
-							for (s = 0; s <= 2; s++) {
-								t = s * 1 + nowpage * 1;
-								$("#ssaa" + t).show()
+						const images = $('.images');
+						let start = 0;
+						let end = 3;
+
+						const perv = () => {
+							if(start > 0){
+								start--;
+								end--;
+								changeDisplay();
 							}
+						};
+						const next = () => {
+							if(end < images.length){
+								start++;
+								end++;
+								changeDisplay();
+							}
+						};
+						const changeDisplay = () => {
+							images.each((index, element) => {
+								console.log(element);
+								if(index>=start && index<end) $(element).show();
+								else $(element).hide();
+							})
 						}
-						pp(1)
+
+						$('.perv-img-btn').on('click', perv);
+						$('.next-img-btn').on('click', next);
+
+						changeDisplay();
+						// var nowpage = 0, num = 0;
+						// function pp(x) {
+						// 	var s, t;
+						// 	if (x == 1 && nowpage - 1 >= 0) { nowpage--; }
+						// 	if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) { nowpage++; }
+						// 	$(".im").hide()
+						// 	for (s = 0; s <= 2; s++) {
+						// 		t = s * 1 + nowpage * 1;
+						// 		$("#ssaa" + t).show()
+						// 	}
+						// }
+						// pp(1)
 					</script>
 				</div>
 			</div>
