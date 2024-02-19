@@ -1,5 +1,11 @@
 <?php
 	include_once "./api/db.php";
+	if(!isset($_SESSION['visited'])){
+		$total = $Total->searchAll()[0];
+		$total['total'] += 1;
+		$Total->update($total);
+		$_SESSION['visited'] = 1;
+	}
 ?>
 
 <!DOCTYPE html
@@ -35,8 +41,7 @@
 					<span class="t botli">主選單區</span>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :
-						1 </span>
+					<span class="t">進站總人數 :<?=$Total->searchAll()[0]['total']?></span>
 				</div>
 			</div>
 			<div class="di" style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
@@ -112,7 +117,7 @@
 								if(index>=start && index<end) $(element).show();
 								else $(element).hide();
 							})
-						}
+						};
 
 						$('.perv-img-btn').on('click', perv);
 						$('.next-img-btn').on('click', next);
