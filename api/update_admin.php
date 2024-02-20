@@ -8,19 +8,19 @@ if(isset($_POST['id'])){
             continue;
         }
         $admin['id'] = $id;
+        $admin['user'] = $_POST['user'][$index];
+        $admin['password'] = $_POST['password'][$index];
         $Admin->update($admin);
     }
+    header("location:../admin.php?do=admin");
 }
 else{
     if($_POST['password'] == $_POST['passwordRe']){
         unset($_POST['passwordRe']);
         $Admin->update($_POST);
+        echo 1;
     }
-    else{
-        echo "<script>alert('密碼和確認密碼不符')</script>";
-        header("location:../admin.php?do=admin");
-    }
+    else echo 0;
 }
 
-header("location:../admin.php?do=admin");
 ?>

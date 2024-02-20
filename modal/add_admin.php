@@ -1,17 +1,32 @@
 <h2 class="ct">新增管理者帳號</h2>
-<form action="./api/update_admin.php" method="post">
+<div>
 
     <div class='ct'>
-        帳號: <input type='text' name='user'>
+        帳號: <input type='text' name='user' id="user">
     </div>
     <div class='ct'>
-        密碼: <input type='password' name='password'>
+        密碼: <input type='password' name='password' id="password">
     </div>
     <div class='ct'>
-        確認密碼: <input type='password' name='passwordRe'>
+        確認密碼: <input type='password' name='passwordRe' id="passwordRe">
     </div>
     <div class="ct">
-        <input type="submit" value="新增">
-        <input type="reset" value="重置">
+        <input type="submit" class="add-admin-btn" value="新增">
+        <input type="reset" class="reset-admin-btn" value="重置">
     </div>
-</form>
+</div>
+
+<script>
+$('.add-admin-btn').on('click', () => {
+    let datas = {user:$('#user').val(), password:$('#password').val(), passwordRe:$('#passwordRe').val()};
+    $.post('./api/update_admin.php', datas, (response) => {
+        if(response === '1') location.href = './admin.php?do=admin';
+        else alert('密碼和確認密碼的內容不同!');
+    });
+});
+$('.reset-admin-btn').on('click', () => {
+    $('#user').val('');
+    $('#password').val('');
+    $('#passwordRe').val('');
+});
+</script>

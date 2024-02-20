@@ -8,7 +8,6 @@
                     <td width="45%">帳號</td>
                     <td width="45%">密碼</td>
                     <td width="10%">刪除</td>
-                    <td></td>
                 </tr>
                 <?php
                 $admins = $Admin->searchAll();
