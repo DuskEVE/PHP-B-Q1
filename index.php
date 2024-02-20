@@ -39,6 +39,28 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+					$menus = $Menu->searchAll(['menu_id'=>0]);
+					foreach($menus as $menu){
+						$subMenus = $Menu->searchAll(['menu_id'=>$menu['id']]);
+					?>
+					<div class="main ct" width='100%'>
+						<div class="mainmu">
+							<a href="<?=$menu['href']?>" style="text-decoration: none;"><?=$menu['text']?></a>
+						</div>
+						<?php
+						if(count($subMenus) > 0){
+							echo "<div class='mw mainmu2' style='display: none;'>";
+							foreach($subMenus as $subMenu){
+								echo "<a href='{$subMenu['href']}' style='text-decoration: none;'>{$subMenu['text']}</a>";
+							}
+							echo "</div>";
+						}
+						?>
+					</div>
+					<?php
+					}
+					?>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :<?=$Total->searchAll()[0]['total']?></span>
