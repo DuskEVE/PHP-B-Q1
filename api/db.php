@@ -3,7 +3,7 @@ session_start();
 class myDB{
     private $host = 'localhost';
     private $charset = 'utf8';
-    private $dbname = 'db15';
+    private $dbname = 'db15_1';
     private $user = 'root';
     private $password = '';
     private $table;
